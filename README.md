@@ -4,4 +4,6 @@
 
 # shift-forth
 
-[shift-ast](https://github.com/shapesecurity/shift-spec) to Forth compiler
+## About
+
+[shift-ast](https://github.com/shapesecurity/shift-spec) to [Forth](http://en.wikipedia.org/wiki/Forth_%28programming_language%29) compiler
