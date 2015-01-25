@@ -1,13 +1,13 @@
 {
   "name": "shift-forth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "shift-ast to Forth compiler",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt mocha"
   },
   "repository": {
     "type": "git",
