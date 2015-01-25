@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "test": "grunt mocha"
+    "test": "./node_modules/.bin/grunt mocha"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "chai": "*",
     "eslint": "*",
     "grunt": "*",
+    "grunt-cli": "*",
     "grunt-contrib-clean": "*",
     "grunt-eslint": "*",
     "grunt-mocha-test": "*",
