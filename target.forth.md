@@ -16,8 +16,7 @@
 
 ## Control flow
 
-    begin until while repeat if else elseif endif
-
+    begin until while repeat if else then
 
 ## Stack manipulations
 
