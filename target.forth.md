@@ -8,7 +8,8 @@
 ## Arithmetic
 
     + - * / and or xor lshift rshift ( a b -- c )
-    invert negate ( a -- b )
+    : invert ( a -- b ) -1 xor ;
+    : negate ( a -- b ) 0 swap - ;
 
 ## Comparison
 
