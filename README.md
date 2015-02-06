@@ -52,7 +52,7 @@ console.log(scope.forth);
 Should produce the following Forth program:
 
 ```forth
-variable a variable b variable c : foo ( -- ) b @ c @ + a ! ;
+ variable b variable c variable a : foo ( -- ) b @ c @ + a ! ;
 ```
 
 ## License
