@@ -1,6 +1,6 @@
 {
   "name": "shift-forth",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "shift-ast to Forth compiler",
   "main": "lib/index.js",
   "files": [
@@ -20,17 +20,24 @@
   },
   "homepage": "https://github.com/drom/shift-forth",
   "dependencies": {
+    "shift-scope": "*",
     "shift-traverse": "*"
   },
   "devDependencies": {
+    "browserify": "*",
     "chai": "*",
+    "codemirror": "*",
     "eslint": "*",
     "grunt": "*",
+    "grunt-bower-install-simple": "*",
+    "grunt-browserify": "*",
     "grunt-cli": "*",
     "grunt-contrib-clean": "*",
+    "grunt-contrib-watch": "*",
     "grunt-eslint": "*",
     "grunt-mocha-test": "*",
+    "http-server": "*",
     "mocha": "*",
-    "shift-parser": "^1.0.2"
+    "shift-parser": "*"
   }
 }

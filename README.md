@@ -6,4 +6,55 @@
 
 ## About
 
-[shift-ast](https://github.com/shapesecurity/shift-spec) to [Forth](http://en.wikipedia.org/wiki/Forth_%28programming_language%29) compiler
+JavaScript Compiler library that takes input in [Shift-AST](https://github.com/shapesecurity/shift-spec)
+format in
+[SSA form](http://en.wikipedia.org/wiki/Static_single_assignment_form)
+and produces
+[Forth](http://en.wikipedia.org/wiki/Forth_%28programming_language%29)
+program.
+
+The library uses:
+[shift-traverse-js](https://github.com/Constellation/shift-traverse-js)
+library for AST traversal.
+
+## Status
+
+Initial code.
+
+## Installation
+
+```
+npm install shift-forth
+```
+
+## Usage
+
+Require Parser, Scope analyzer, and Shift-Forth.
+
+```js
+var parse = require('shift-parser').default,
+    analyze = require('shift-scope').default,
+    forth = require('shift-forth').default;
+```
+
+Parse JavaScript string, analyze scope, emit Forth string.
+
+```js
+var source, tree, scope;
+
+source = 'function foo () { a = b + c }';
+tree = parse(source);
+scope = analyze(tree);
+forth(scope);
+console.log(scope.forth);
+```
+
+Should produce the following Forth program:
+
+```forth
+variable a variable b variable c : foo ( -- ) b @ c @ + a ! ;
+```
+
+## License
+
+MIT

@@ -6,6 +6,13 @@ module.exports = function(grunt) {
         eslint: {
             all: ['Gruntfile.js', 'lib/*.js']
         },
+        browserify: {
+          dist: {
+            files: {
+              'demo/compiler.all.js': ['lib/compiler.js']
+            }
+          }
+        },
         mochaTest: {
             test: {
                 options: {
@@ -18,6 +25,31 @@ module.exports = function(grunt) {
         },
         clean: {
             node: ['node_modules']
+        },
+        watch: {
+            scripts: {
+                files: ['lib/*.js'],
+                tasks: ['default'],
+                options: {
+                    spawn: false
+                }
+            }
+        },
+        'bower-install-simple': {
+            options: {
+                color: true,
+                directory: 'components'
+            },
+            prod: {
+                options: {
+                    production: true
+                }
+            },
+            dev: {
+                options: {
+                    production: false
+                }
+            }
         }
     });
 
@@ -25,8 +57,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-bower-install-simple');
 
     // tasks
     grunt.registerTask('mocha', ['mochaTest']);
-    grunt.registerTask('default', ['eslint', 'mocha']);
+    grunt.registerTask('default', ['bower-install-simple', 'eslint', 'mocha', 'browserify']);
 };
