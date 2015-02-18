@@ -4,6 +4,8 @@
 
 # shift-forth
 
+[DEMO](http://drom.github.io/shift-forth/editor.html)
+
 ## About
 
 JavaScript Compiler library that takes input in [Shift-AST](https://github.com/shapesecurity/shift-spec)
