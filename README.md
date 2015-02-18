@@ -43,11 +43,11 @@ Parse JavaScript string, analyze scope, emit Forth string.
 var source, tree, scope;
 
 source = 'function foo () { a = b + c }';
-tree = parse(source);
-forth.naming(tree);
-scope = analyze(tree);
-forth.dfg(scope);
-forth.emit(scope);
+tree = parse(source);  // Shift AST
+forth.naming(tree);    // add names to noname AST nodes
+scope = analyze(tree); // Scoped AST
+forth.dfg(scope);      // add dependency graph
+forth.emit(scope);     // add Forth definition to scoped AST
 console.log(scope.forth);
 ```
 
