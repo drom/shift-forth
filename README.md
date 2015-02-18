@@ -34,7 +34,7 @@ Require Parser, Scope analyzer, and Shift-Forth.
 ```js
 var parse = require('shift-parser').default,
     analyze = require('shift-scope').default,
-    forth = require('shift-forth').default;
+    forth = require('shift-forth');
 ```
 
 Parse JavaScript string, analyze scope, emit Forth string.
@@ -44,15 +44,21 @@ var source, tree, scope;
 
 source = 'function foo () { a = b + c }';
 tree = parse(source);
+forth.naming(tree);
 scope = analyze(tree);
-forth(scope);
+forth.dfg(scope);
+forth.emit(scope);
 console.log(scope.forth);
 ```
 
 Should produce the following Forth program:
 
 ```forth
- variable b variable c variable a : foo ( -- ) b @ c @ + a ! ;
+variable b
+variable c
+variable a
+
+: foo b @ c @ + a ! ;
 ```
 
 ## License
