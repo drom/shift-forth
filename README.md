@@ -60,25 +60,16 @@ Should produce the following Forth program:
 ```
 
 ## Examples
-<table style="width:100%">
-<tr>
-<td>
-<div class="highlight highlight-js">
-<pre>
+
+```js
 function sub (a, b) {
     return a - b;
 }
-</pre>
-</div>
-</td>
-<td>
-<div class="highlight highlight-forth">
-: sub - exit ;
-</div>
-</td>
-</tr>
-</table>
+```
 
+```forth
+: sub - exit ;
+```
 
 ## License
 
