@@ -44,7 +44,7 @@ Parse JavaScript string, analyze scope, emit Forth string.
 ```js
 var source, tree, scope;
 
-source = 'function foo () { a = b + c }';
+source = 'function sub (a, b) { return a - b; }';
 tree = parse(source);  // Shift AST
 forth.naming(tree);    // add names to noname AST nodes
 scope = analyze(tree); // Scoped AST
@@ -56,12 +56,27 @@ console.log(scope.forth);
 Should produce the following Forth program:
 
 ```forth
-variable b
-variable c
-variable a
-
-: foo b @ c @ + a ! ;
+: sub - exit ;
 ```
+
+## Examples
+<table>
+<tr>
+<td>
+<div class="highlight highlight-js">
+function sub (a, b) {
+    return a - b;
+}
+</div>
+</td>
+<td>
+<div class="highlight highlight-forth">
+: sub - exit ;
+</div>
+</td>
+</tr>
+</table>
+
 
 ## License
 
