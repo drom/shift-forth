@@ -60,13 +60,15 @@ Should produce the following Forth program:
 ```
 
 ## Examples
-<table>
+<table style="width:100%">
 <tr>
 <td>
 <div class="highlight highlight-js">
+<pre>
 function sub (a, b) {
     return a - b;
 }
+</pre>
 </div>
 </td>
 <td>
