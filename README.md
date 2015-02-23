@@ -61,6 +61,8 @@ Should produce the following Forth program:
 
 ## Examples
 
+### Source
+
 ```js
 function add42 (a) {
   return a + 42;
@@ -89,7 +91,7 @@ function add_var (a, b) {
 }
 ```
 
-Optimized version
+### Forth optimized version
 
 ```forth
 variable g0
@@ -101,7 +103,7 @@ variable g0
 : add_var +   exit ;
 ```
 
-Unoptimized version with comments
+### Forth not optimized version with comments
 
 ```forth
 variable g0
