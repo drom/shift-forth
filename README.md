@@ -87,21 +87,6 @@ function add_var (a, b) {
   x = a + b;
   return x;
 }
-
-function max (a, b) {
-    if (a > b) {
-        return a;
-    } else {
-        return b;
-    }
-}
-
-function max (a, b) {
-    if (a > b) {
-        return a;
-    }
-    return b;
-}
 ```
 
 Optimized version
@@ -114,8 +99,6 @@ variable g0
 : add3_fast + + exit ;
 : add3_slow 2 pick 2 pick + + nip nip exit ;
 : add_var +   exit ;
-: max 1 pick 1 pick > if 1 pick exit else 1 pick exit then ;
-: max 1 pick 1 pick > if 1 pick exit else 1 pick exit ;
 ```
 
 Unoptimized version with comments
@@ -170,31 +153,6 @@ exit                   ( $1:$0 )
 0 pick                 ( x: $5:$4 )
 nip exit               ( $5:$4 )
 ;                      ( $5:$4 )
-
-: max                  ( a:$1,$4 b:$2,$6 )
-1 pick                 ( a:$4 b:$2,$6 $1:$0 )
-1 pick                 ( a:$4 b:$6 $1:$0 $2:$0 )
->                      ( a:$4 b:$6 $0: )
-if                     ( a:$4 b:$6 )
-1 pick                 ( a: b:$6 $4:$3 )
-exit                   ( a: b:$6 $4:$3 )
-else                   ( a: b:$6 $4:$3 )
-1 pick                 ( a: b: $4:$3 $6:$5 )
-exit                   ( a: b: $4:$3 $6:$5 )
-then                   ( a: b: $4:$3 $6:$5 )
-;                      ( a: b: $4:$3 $6:$5 )
-
-: max                  ( a:$1,$4 b:$2,$6 )
-1 pick                 ( a:$4 b:$2,$6 $1:$0 )
-1 pick                 ( a:$4 b:$6 $1:$0 $2:$0 )
->                      ( a:$4 b:$6 $0: )
-if                     ( a:$4 b:$6 )
-1 pick                 ( a: b:$6 $4:$3 )
-exit                   ( a: b:$6 $4:$3 )
-else                   ( a: b:$6 $4:$3 )
-1 pick                 ( a: b: $4:$3 $6:$5 )
-exit                   ( a: b: $4:$3 $6:$5 )
-;                      ( a: b: $4:$3 $6:$5 )
 ```
 
 ## License
