@@ -62,13 +62,123 @@ Should produce the following Forth program:
 ## Examples
 
 ```js
+function add42 (a) {
+  return a + 42;
+}
+
 function sub (a, b) {
-    return a - b;
+  return a - b;
+}
+
+function mul_global (a) {
+  return a * g0;
+}
+
+function add3_fast (a, b, c) {
+  return b + c + a;
+}
+
+function add3_slow (a, b, c) {
+  return a + b + c;
+}
+
+function add_var (a, b) {
+  var x;
+  x = a + b;
+  return x;
+}
+
+function max (a, b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+function max (a, b) {
+    if (a > b) {
+        return a;
+    }
+    return b;
 }
 ```
 
 ```forth
-: sub - exit ;
+variable g0
+
+: add42                ( a:$2 )
+0 pick                 ( a: $2:$1 )
+42                     ( a: $2:$1 $3:$1 )
++ nip                  ( $1:$0 )
+exit                   ( $1:$0 )
+;                      ( $1:$0 )
+
+: sub                  ( a:$2 b:$3 )
+1 pick                 ( a: b:$3 $2:$1 )
+1 pick                 ( a: b: $2:$1 $3:$1 )
+- nip nip              ( $1:$0 )
+exit                   ( $1:$0 )
+;                      ( $1:$0 )
+
+: mul_global           ( a:$2 )
+0 pick                 ( a: $2:$1 )
+g0 @                   ( a: $2:$1 $3:$1 )
+* nip                  ( $1:$0 )
+exit                   ( $1:$0 )
+;                      ( $1:$0 )
+
+: add3_fast            ( a:$5 b:$3 c:$4 )
+1 pick                 ( a:$5 b: c:$4 $3:$2 )
+1 pick                 ( a:$5 b: c: $3:$2 $4:$2 )
++ nip nip              ( a:$5 $2:$1 )
+1 pick                 ( a: $2:$1 $5:$1 )
++ nip                  ( $1:$0 )
+exit                   ( $1:$0 )
+;                      ( $1:$0 )
+
+: add3_slow            ( a:$3 b:$4 c:$5 )
+2 pick                 ( a: b:$4 c:$5 $3:$2 )
+2 pick                 ( a: b: c:$5 $3:$2 $4:$2 )
++                      ( a: b: c:$5 $2:$1 )
+1 pick                 ( a: b: c: $2:$1 $5:$1 )
++ nip nip nip          ( $1:$0 )
+exit                   ( $1:$0 )
+;                      ( $1:$0 )
+
+: add_var              ( a:$2 b:$3 )
+1 pick                 ( a: b:$3 $2:$1 )
+1 pick                 ( a: b: $2:$1 $3:$1 )
++ nip nip              ( $1:x )
+                       ( x:$5 )
+0 pick                 ( x: $5:$4 )
+nip exit               ( $5:$4 )
+;                      ( $5:$4 )
+
+: max                  ( a:$1,$4 b:$2,$6 )
+1 pick                 ( a:$4 b:$2,$6 $1:$0 )
+1 pick                 ( a:$4 b:$6 $1:$0 $2:$0 )
+>                      ( a:$4 b:$6 $0: )
+if                     ( a:$4 b:$6 )
+1 pick                 ( a: b:$6 $4:$3 )
+exit                   ( a: b:$6 $4:$3 )
+else                   ( a: b:$6 $4:$3 )
+1 pick                 ( a: b: $4:$3 $6:$5 )
+exit                   ( a: b: $4:$3 $6:$5 )
+then                   ( a: b: $4:$3 $6:$5 )
+;                      ( a: b: $4:$3 $6:$5 )
+
+: max                  ( a:$1,$4 b:$2,$6 )
+1 pick                 ( a:$4 b:$2,$6 $1:$0 )
+1 pick                 ( a:$4 b:$6 $1:$0 $2:$0 )
+>                      ( a:$4 b:$6 $0: )
+if                     ( a:$4 b:$6 )
+1 pick                 ( a: b:$6 $4:$3 )
+exit                   ( a: b:$6 $4:$3 )
+else                   ( a: b:$6 $4:$3 )
+1 pick                 ( a: b: $4:$3 $6:$5 )
+exit                   ( a: b: $4:$3 $6:$5 )
+;                      ( a: b: $4:$3 $6:$5 )
 ```
 
 ## License
