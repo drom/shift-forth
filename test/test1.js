@@ -8,45 +8,56 @@ var expect = require('chai').expect,
 var data = {
     add42: {
         src: 'function add42 (a) { return a + 42; }',
-        res: '\n: add42 42 + ; '
+        res: ': add42 42 + exit ; '
     },
     sub: {
         src: 'function sub (a, b) { return a - b; }',
-        res: '\n: sub - ; '
+        res: ': sub - exit ; '
     },
     mul_global: {
         src: 'function mul_global (a) { return a * g0; }',
-        res: 'variable g0\n\n: mul_global g0 @ * ; '
+        res: 'variable g0\n: mul_global g0 @ * exit ; '
     },
     add3_fast: {
         src: 'function add3_fast (a, b, c) { return b + c + a; }',
-        res: '\n: add3_fast + + ; '
+        res: ': add3_fast + + exit ; '
     },
     add3_slow: {
         src: 'function add3_slow (a, b, c) { return a + b + c; }',
-        res: '\n: add3_slow 2 pick 2 pick + + nip nip ; '
+        res: ': add3_slow 2 pick 2 pick + + nip nip exit ; '
     },
     add_var: {
         src: 'function add_var (a, b) { var x; x = a + b; return x; }',
-        res: '\n: add_var +  ; '
+        res: ': add_var +   exit ; '
     }
 };
 
 /*
 
-function add (a, b) {
-    return a + b;
+function add42 (a) {
+  return a + 42;
 }
 
-function add (a, b) {
-    var z;
-    z = a + b;
-    return z;
+function sub (a, b) {
+  return a - b;
 }
 
-function add (a, b) {
-    var z = a + b;
-    return z;
+function mul_global (a) {
+  return a * g0;
+}
+
+function add3_fast (a, b, c) {
+  return b + c + a;
+}
+
+function add3_slow (a, b, c) {
+  return a + b + c;
+}
+
+function add_var (a, b) {
+  var x;
+  x = a + b;
+  return x;
 }
 
 function max (a, b) {
