@@ -104,6 +104,22 @@ function max (a, b) {
 }
 ```
 
+Optimized version
+
+```forth
+variable g0
+: add42 42 + exit ;
+: sub - exit ;
+: mul_global g0 @ * exit ;
+: add3_fast + + exit ;
+: add3_slow 2 pick 2 pick + + nip nip exit ;
+: add_var +   exit ;
+: max 1 pick 1 pick > if 1 pick exit else 1 pick exit then ;
+: max 1 pick 1 pick > if 1 pick exit else 1 pick exit ;
+```
+
+Unoptimized version with comments
+
 ```forth
 variable g0
 
