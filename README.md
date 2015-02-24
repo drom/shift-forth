@@ -90,12 +90,8 @@ scope = analyze(tree); // Scoped AST
 forth.dfg(scope);      // add dependency graph
 forth.emit(scope);     // add Forth definition to scoped AST
 console.log(scope.forth);
-```
 
-Should produce the following Forth program:
-
-```forth
-: sub - exit ;
+// -> : sub - exit ;
 ```
 
 The library uses:
