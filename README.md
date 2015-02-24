@@ -91,13 +91,13 @@ function add_var (a, b) {        // : add_var +   exit ;
 
 function cmplx_re (a, b, c, d) { // : cmplx_re
   var re;                        //     3 pick 2 pick *
-	re = a * c - b * d;          //     3 pick 2 pick * -
+  re = a * c - b * d;          //     3 pick 2 pick * -
   return re;                     //     nip nip nip nip exit ;
 }
 
 function cmplx_im (a, b, c, d) { // : cmplx_im
   var im;                        //     3 pick *
-	im = a * d + b * c;          //     2 pick 2 pick * +
+  im = a * d + b * c;          //     2 pick 2 pick * +
   return im;                     //     nip nip nip exit ;  
 }
 ```
