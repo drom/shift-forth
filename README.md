@@ -156,6 +156,16 @@ exit                   ( $1:$0 )
 nip exit               ( $5:$4 )
 ;                      ( $5:$4 )
 ```
+<table style="width:100%"><tr>
+<td style="width:50%"><pre><code class="js">
+bar(1, 2);
+</code></pre></td>
+<td style="width:50%"><pre><code class="js">
+foo(1, 2);
+</code></pre></td>
+</tr></table>
+
+
 
 ## License
 
