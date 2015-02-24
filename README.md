@@ -61,10 +61,7 @@ Should produce the following Forth program:
 
 ## Examples
 
-### Source
-
 ```js
-
 function add42 (a) {             // : add42 42 + exit ;
   return a + 42;
 }
@@ -103,7 +100,6 @@ function cmplx_im (a, b, c, d) { // : cmplx_im
 	im = a * d + b * c;          //     2 pick 2 pick * +
   return im;                     //     nip nip nip exit ;  
 }
-
 ```
 
 ## License
