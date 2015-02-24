@@ -15,50 +15,6 @@ and produces
 [Forth](http://en.wikipedia.org/wiki/Forth_%28programming_language%29)
 program.
 
-The library uses:
-[shift-traverse-js](https://github.com/Constellation/shift-traverse-js)
-library for AST traversal.
-
-## Status
-
-Initial code.
-
-## Installation
-
-```
-npm install shift-forth
-```
-
-## Usage
-
-Require Parser, Scope analyzer, and Shift-Forth.
-
-```js
-var parse = require('shift-parser').default,
-    analyze = require('shift-scope').default,
-    forth = require('shift-forth');
-```
-
-Parse JavaScript string, analyze scope, emit Forth string.
-
-```js
-var source, tree, scope;
-
-source = 'function sub (a, b) { return a - b; }';
-tree = parse(source);  // Shift AST
-forth.naming(tree);    // add names to noname AST nodes
-scope = analyze(tree); // Scoped AST
-forth.dfg(scope);      // add dependency graph
-forth.emit(scope);     // add Forth definition to scoped AST
-console.log(scope.forth);
-```
-
-Should produce the following Forth program:
-
-```forth
-: sub - exit ;
-```
-
 ## Examples
 
 ```js
@@ -101,6 +57,50 @@ function cmplx_im (a, b, c, d) { // : cmplx_im
   return im;                     //     nip nip nip exit ;  
 }
 ```
+
+## Status
+
+Initial code.
+
+## Installation
+
+```
+npm install shift-forth
+```
+
+## Usage
+
+Require Parser, Scope analyzer, and Shift-Forth.
+
+```js
+var parse = require('shift-parser').default,
+    analyze = require('shift-scope').default,
+    forth = require('shift-forth');
+```
+
+Parse JavaScript string, analyze scope, emit Forth string.
+
+```js
+var source, tree, scope;
+
+source = 'function sub (a, b) { return a - b; }';
+tree = parse(source);  // Shift AST
+forth.naming(tree);    // add names to noname AST nodes
+scope = analyze(tree); // Scoped AST
+forth.dfg(scope);      // add dependency graph
+forth.emit(scope);     // add Forth definition to scoped AST
+console.log(scope.forth);
+```
+
+Should produce the following Forth program:
+
+```forth
+: sub - exit ;
+```
+
+The library uses:
+[shift-traverse-js](https://github.com/Constellation/shift-traverse-js)
+library for AST traversal.
 
 ## License
 
