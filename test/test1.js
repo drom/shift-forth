@@ -29,6 +29,10 @@ var data = {
     add_var: {
         src: 'function add_var (a, b) { var x; x = a + b; return x; }',
         res: ': add_var +   exit ; '
+    },
+    var_init: {
+        src: 'function add_var (a) { var x, y = a, z = y + 42; return z; }',
+        res: ': add_var  42 +   exit ; '
     }
 };
 
