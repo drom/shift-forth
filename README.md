@@ -64,108 +64,47 @@ Should produce the following Forth program:
 ### Source
 
 ```js
-function add42 (a) {
+
+function add42 (a) {             // : add42 42 + exit ;
   return a + 42;
 }
 
-function sub (a, b) {
+function square (x) {            // : square 0 pick * exit ;
+  	return x * x;
+}
+
+function sub (a, b) {            // : sub - exit ;
   return a - b;
 }
 
-function mul_global (a) {
+                                 // variable g0
+function mul_global (a) {        // : mul_global g0 @ * exit ;
   return a * g0;
 }
 
-function add3_fast (a, b, c) {
+function add3_fast (a, b, c) {   // : add3_fast + + exit ;
   return b + c + a;
 }
 
-function add3_slow (a, b, c) {
-  return a + b + c;
-}
-
-function add_var (a, b) {
+function add_var (a, b) {        // : add_var +   exit ;
   var x;
   x = a + b;
   return x;
 }
+
+function cmplx_re (a, b, c, d) { // : cmplx_re
+  var re;                        //     3 pick 2 pick *
+	re = a * c - b * d;          //     3 pick 2 pick * -
+  return re;                     //     nip nip nip nip exit ;
+}
+
+function cmplx_im (a, b, c, d) { // : cmplx_im
+  var im;                        //     3 pick *
+	im = a * d + b * c;          //     2 pick 2 pick * +
+  return im;                     //     nip nip nip exit ;  
+}
+
 ```
-
-### Forth optimized version
-
-```forth
-variable g0
-: add42 42 + exit ;
-: sub - exit ;
-: mul_global g0 @ * exit ;
-: add3_fast + + exit ;
-: add3_slow 2 pick 2 pick + + nip nip exit ;
-: add_var +   exit ;
-```
-
-### Forth not optimized version with comments
-
-```forth
-variable g0
-
-: add42                ( a:$2 )
-0 pick                 ( a: $2:$1 )
-42                     ( a: $2:$1 $3:$1 )
-+ nip                  ( $1:$0 )
-exit                   ( $1:$0 )
-;                      ( $1:$0 )
-
-: sub                  ( a:$2 b:$3 )
-1 pick                 ( a: b:$3 $2:$1 )
-1 pick                 ( a: b: $2:$1 $3:$1 )
-- nip nip              ( $1:$0 )
-exit                   ( $1:$0 )
-;                      ( $1:$0 )
-
-: mul_global           ( a:$2 )
-0 pick                 ( a: $2:$1 )
-g0 @                   ( a: $2:$1 $3:$1 )
-* nip                  ( $1:$0 )
-exit                   ( $1:$0 )
-;                      ( $1:$0 )
-
-: add3_fast            ( a:$5 b:$3 c:$4 )
-1 pick                 ( a:$5 b: c:$4 $3:$2 )
-1 pick                 ( a:$5 b: c: $3:$2 $4:$2 )
-+ nip nip              ( a:$5 $2:$1 )
-1 pick                 ( a: $2:$1 $5:$1 )
-+ nip                  ( $1:$0 )
-exit                   ( $1:$0 )
-;                      ( $1:$0 )
-
-: add3_slow            ( a:$3 b:$4 c:$5 )
-2 pick                 ( a: b:$4 c:$5 $3:$2 )
-2 pick                 ( a: b: c:$5 $3:$2 $4:$2 )
-+                      ( a: b: c:$5 $2:$1 )
-1 pick                 ( a: b: c: $2:$1 $5:$1 )
-+ nip nip nip          ( $1:$0 )
-exit                   ( $1:$0 )
-;                      ( $1:$0 )
-
-: add_var              ( a:$2 b:$3 )
-1 pick                 ( a: b:$3 $2:$1 )
-1 pick                 ( a: b: $2:$1 $3:$1 )
-+ nip nip              ( $1:x )
-                       ( x:$5 )
-0 pick                 ( x: $5:$4 )
-nip exit               ( $5:$4 )
-;                      ( $5:$4 )
-```
-<table style="width:100%"><tr>
-<td style="width:50%"><pre><code class="js">
-bar(1, 2);
-</code></pre></td>
-<td style="width:50%"><pre><code class="js">
-foo(1, 2);
-</code></pre></td>
-</tr></table>
-
-
 
 ## License
 
