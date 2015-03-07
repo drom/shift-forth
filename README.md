@@ -26,36 +26,50 @@ function square (x) {            // : square 0 pick * exit ;
   	return x * x;
 }
 
-function sub (a, b) {            // : sub - exit ;
-  return a - b;
-}
+function sub (a, b) {            // : sub
+  return a - b;                  //     - exit
+}                                // ;
 
                                  // variable g0
-function mul_global (a) {        // : mul_global g0 @ * exit ;
-  return a * g0;
-}
+function mul_global (a) {        // : mul_global
+  return a * g0;                 //     g0 @ * exit
+}                                // ;
 
-function add3_fast (a, b, c) {   // : add3_fast + + exit ;
-  return b + c + a;
-}
+function add3_fast (a, b, c) {   // : add3_fast
+  return b + c + a;              //     + + exit
+}                                // ;
 
-function add_var (a, b) {        // : add_var +   exit ;
+function add_var (a, b) {        // : add_var
   var x;
-  x = a + b;
-  return x;
-}
+  x = a + b;                     //     +
+  return x;                      //     exit
+}                                // ;
 
 function cmplx_re (a, b, c, d) { // : cmplx_re
   var re;                        //     3 pick 2 pick *
   re = a * c - b * d;            //     3 pick 2 pick * -
-  return re;                     //     nip nip nip nip exit ;
-}
+  return re;                     //     nip nip nip nip exit
+}                                // ;
 
 function cmplx_im (a, b, c, d) { // : cmplx_im
   var im;                        //     3 pick *
   im = a * d + b * c;            //     2 pick 2 pick * +
-  return im;                     //     nip nip nip exit ;  
-}
+  return im;                     //     nip nip nip exit
+}                                // ;
+
+function foo (x0, y0) {          // : foo
+  if (x0 < 100) {                //     over 100 < if
+    do {                         //         begin
+      x1 = ф(x0, x2);            //
+      y1 = ф(y0, y2);            //
+      x2 = x1 + 1;               //             swap 1 +
+      y2 = y1 + x2;              //             swap over +
+    } while (x2 < 100);          //         over 100 >= until
+  }                              //     then
+  x3 = ф(x0, x2);
+  y3 = ф(y0, y2);
+  return [x3, y3];               //     exit
+}                                // ;
 ```
 
 ## Status
